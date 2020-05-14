@@ -1,34 +1,31 @@
-UUtils
-======
+# UUtils
 
- * Various helper modules for RobCoG.
+* Various helper modules for RobCoG.
 
- * Supported engine version: **UE 4.22**
+* Supported engine version: **UE 4.22**
 
-Usage
-=====
+## Usage
 
--   Add the plugin to your project (e.g `MyProject/Plugins/UUtils`)  
+* Add the plugin to your project (e.g `MyProject/Plugins/UUtils`)
 
+* Add the module dependency to your module (Project, Plugin); In the `MyModule.Build.cs` file:
 
--   Add the module dependency to your module (Project, Plugin); In the
-    `MyModule.Build.cs` file:  
+    ```cs
+    PublicDependencyModuleNames.AddRange(
+    new string[]
+    {
+    ...
+    "UMyUtilsModule",  // UIds, UTags etc.
+    ...
+    }
+    );
+    ```
 
-		PublicDependencyModuleNames.AddRange(  
-		new string[]
-		{
-        ...  
-        "UMyUtilsModule",  // UIds, UTags etc.
-        ...  
-		}
-		);
+* Include `MyUtilsModule.h` where you plan to use the related functions.
 
--   Include `MyUtilsModule.h` where you plan to use the related functions.
+## Modules
 
-Modules:
-=====
-
-## UTags
+### UTags
 
 Using the built in Tag functionalities of Actors and Components to store data in a
 key-value pair form. The plugin has various functions to ease the access for such data.
@@ -45,14 +42,14 @@ Example of storing key-value pairs:
 
 How to add tags to an actor:
 
-![](Documentation/Img/ActorTags.PNG)
+![Actor Tags](Documentation/Img/ActorTags.PNG "Actor Tags")
 
 How to add tags to a component:
 
-![](Documentation/Img/ComponentTags.PNG)
+![Component Tags](Documentation/Img/ComponentTags.PNG "Component Tags")
 
 
-### Examples
+#### Examples
 
 Tag:
 
@@ -61,41 +58,40 @@ Tag:
 Generating new Ids for all the actors with the `TagType` `SemLog`:
 
 ```cpp
-	static FReply GenerateNewIds()
-	{
-		for (TActorIterator<AActor> ActItr(GEditor->GetEditorWorldContext().World()); ActItr; ++ActItr)
-		{
-			int32 TagIndex = FTagStatics::GetTagTypeIndex(*ActItr, "SemLog");
-			if (TagIndex != INDEX_NONE)
-			{
-				FTagStatics::AddKeyValuePair(
-					ActItr->Tags[TagIndex], "Id", FSLStatics::GenerateRandomFString(4));
-			}
-		}
-		return FReply::Handled();
-	}
+    static FReply GenerateNewIds()
+    {
+        for (TActorIterator<AActor> ActItr(GEditor->GetEditorWorldContext().World()); ActItr; ++ActItr)
+        {
+            int32 TagIndex = FTagStatics::GetTagTypeIndex(*ActItr, "SemLog");
+            if (TagIndex != INDEX_NONE)
+            {
+                FTagStatics::AddKeyValuePair(
+                    ActItr->Tags[TagIndex], "Id", FSLStatics::GenerateRandomFString(4));
+            }
+        }
+        return FReply::Handled();
+    }
 ```
 
 Get a map of actors or components to their tag properties giving the world as an input
 
 ```cpp
-	// Get the map of actors to their tag properties
-	const TMap<AActor*, TMap<FString, FString>> ActorToTagProperties =
-		FTagStatics::GetActorsToKeyValuePairs(World, "SemLog");
+    // Get the map of actors to their tag properties
+    const TMap<AActor*, TMap<FString, FString>> ActorToTagProperties =
+        FTagStatics::GetActorsToKeyValuePairs(World, "SemLog");
 
-	// Get the map of components to their tag properties
-	const TMap<UActorComponent*, TMap<FString, FString>> ComponentToTagProperties =
-	FTagStatics::GetComponentsToKeyValuePairs(World, "SemLog");
+    // Get the map of components to their tag properties
+    const TMap<UActorComponent*, TMap<FString, FString>> ComponentToTagProperties =
+    FTagStatics::GetComponentsToKeyValuePairs(World, "SemLog");
 
-	// Get all objects with TF tags
-	auto ObjToTagData = FTagStatics::GetObjectsToKeyValuePairs(GetWorld(), TEXT("TF"));
+    // Get all objects with TF tags
+    auto ObjToTagData = FTagStatics::GetObjectsToKeyValuePairs(GetWorld(), TEXT("TF"));
 ```
 
-## UIds
+### UIds
 
 Helper functions for generating and converting universal unique identifiers ([FGuid](http://api.unrealengine.com/INT/API/Runtime/Core/Misc/FGuid/index.html)) to Base64 and back.
 
-
-## UConversions
+### UConversions
 
 Units and coordinate systems conversions from and to Unreal Engine.
