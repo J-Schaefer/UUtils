@@ -2,7 +2,7 @@ pipeline {
     agent none
     stages {
         stage('Build Docker Image') {
-            agent { docker
+            agent { dockerfile
                 filename 'Dockerfile'
                 dir '.ci'
                 label 'ue4.22/ubuntu-18.04'
