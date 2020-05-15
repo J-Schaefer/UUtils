@@ -48,7 +48,6 @@ How to add tags to a component:
 
 ![Component Tags](Documentation/Img/ComponentTags.PNG "Component Tags")
 
-
 #### Examples
 
 Tag:
