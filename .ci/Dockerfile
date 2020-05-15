@@ -13,3 +13,9 @@ RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
 # make sure your domain is accepted
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+RUN git clone git@github.com:EpicGames/UnrealEngine.git UnrealEngine422/
+RUN cd UnrealEngine422/
+RUN .Setup.sh
+RUN .GenerateProjectFiles.sh
+RUN make

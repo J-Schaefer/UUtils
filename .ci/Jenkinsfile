@@ -6,7 +6,6 @@ pipeline {
                 dockerfile {
                     filename 'Dockerfile'
                     dir '.ci'
-                    label 'ue4.22/ubuntu-18.04'
                 }
             }
             steps {
