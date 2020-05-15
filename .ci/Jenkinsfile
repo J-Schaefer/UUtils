@@ -2,10 +2,12 @@ pipeline {
     agent none
     stages {
         stage('Build Docker Image') {
-            agent { dockerfile
-                filename 'Dockerfile'
-                dir '.ci'
-                label 'ue4.22/ubuntu-18.04'
+            agent {
+                dockerfile {
+                    filename 'Dockerfile'
+                    dir '.ci'
+                    label 'ue4.22/ubuntu-18.04'
+                }
             }
             steps {
                 sh 'git --version'
