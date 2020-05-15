@@ -12,7 +12,8 @@ RUN mkdir /root/.ssh/
 # Copy over private key, and set permissions
 # Warning! Anyone who gets their hands on this image will be able
 # to retrieve this private key file from the corresponding image layer
-ADD id_rsa /root/.ssh/id_rsa
+ADD .ssh/id_rsa /root/.ssh/id_rsa
+RUN cat /root/.ssh/id_rsa
 # make sure your domain is accepted
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
