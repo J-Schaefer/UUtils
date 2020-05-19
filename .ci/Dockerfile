@@ -7,7 +7,7 @@ ARG SSH_PRIVATE_KEY=.ssh/id_rsa
 RUN apt-get update
 RUN apt-get install -y git
 
-RUN ls /var/jenkins-home
+RUN ls /opt/jenkins-home
 
 RUN cd UE4-22 && .Setup.sh && .GenerateProjectFiles.sh && make
 

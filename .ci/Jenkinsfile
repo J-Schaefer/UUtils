@@ -15,7 +15,7 @@ pipeline {
                 dockerfile {
                     filename 'Dockerfile'
                     dir '.ci'
-                    args '-v /home/jesch/.jenkins/workspace/test-ue4/:/var/jenkins-home'
+                    args '-v /home/jesch/.jenkins/workspace/test-ue4/:/opt/jenkins-home'
                     reuseNode true
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
     }
     post {
         failure {
-            cleanWS()
+            cleanWs()
         }
     }
 }
