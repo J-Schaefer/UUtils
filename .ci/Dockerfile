@@ -9,7 +9,7 @@ RUN apt-get install -y git
 
 RUN ls /home
 
-RUN cd UE4-22 && .Setup.sh && .GenerateProjectFiles.sh && make
+RUN cd /home/UE4-22 && .Setup.sh && .GenerateProjectFiles.sh && make
 
 # RUN mkdir /root/.ssh/
 # # Copy over private key, and set permissions
