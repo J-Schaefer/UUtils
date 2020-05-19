@@ -4,14 +4,14 @@ pipeline {
         stage('Show environment') {
             agent any
             steps {
-                sh 'ls'
-                sh 'ls ..'
+                echo pwd
             }
         }
         stage('Download UE4.22') {
             agent any
             steps{
                 echo 'Downloading...'
+                git branch: '4.22', url: 'git@github.com:EpicGames/UnrealEngine.git'
             }
         }
         stage('Build Docker Image') {
