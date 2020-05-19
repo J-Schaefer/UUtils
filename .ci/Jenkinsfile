@@ -2,11 +2,15 @@ pipeline {
     agent none
     stages {
         stage('Show environment') {
-            sh 'ls'
-            sh 'ls ..'
+            steps {
+                sh 'ls'
+                sh 'ls ..'
+            }
         }
         stage('Download UE4.22') {
-            echo 'Downloading...'
+            steps{
+                echo 'Downloading...'
+            }
         }
         stage('Build Docker Image') {
             agent {
