@@ -16,6 +16,7 @@ pipeline {
                     filename 'Dockerfile'
                     dir '.ci'
                     args '-v /home/jesch/.jenkins/workspace/test-ue4/:/var/jenkins-home'
+                    reuseNode true
                 }
             }
             steps {
