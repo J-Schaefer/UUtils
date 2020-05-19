@@ -2,12 +2,14 @@ pipeline {
     agent none
     stages {
         stage('Show environment') {
+            agent any
             steps {
                 sh 'ls'
                 sh 'ls ..'
             }
         }
         stage('Download UE4.22') {
+            agent any
             steps{
                 echo 'Downloading...'
             }
