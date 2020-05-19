@@ -21,6 +21,7 @@ pipeline {
                 dockerfile {
                     filename 'Dockerfile'
                     dir '.ci'
+                    args '-v .:/var/jenkins-home'
                 }
             }
             steps {
