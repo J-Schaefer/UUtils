@@ -15,7 +15,7 @@ pipeline {
                 dockerfile {
                     filename 'Dockerfile'
                     dir '.ci'
-                    args '-v .:/var/jenkins-home'
+                    args '-v /home/jesch/.jenkins/workspace/test-ue4/:/var/jenkins-home'
                 }
             }
             steps {
