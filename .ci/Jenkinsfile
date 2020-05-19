@@ -1,12 +1,6 @@
 pipeline {
     agent none
     stages {
-        stage('Show environment') {
-            agent any
-            steps {
-                echo pwd
-            }
-        }
         stage('Download UE4.22') {
             agent any
             steps{
@@ -27,6 +21,11 @@ pipeline {
             steps {
                 sh 'git --version'
             }
+        }
+    }
+    post {
+        failure {
+            cleanWS()
         }
     }
 }
