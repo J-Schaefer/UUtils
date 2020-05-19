@@ -11,7 +11,9 @@ pipeline {
             agent any
             steps{
                 echo 'Downloading...'
-                git credentialsId: 'jeschatamy', branch: '4.22', url: 'git@github.com:EpicGames/UnrealEngine.git'
+                dir('ue4-22') {
+                    git credentialsId: 'jeschatamy', branch: '4.22', url: 'git@github.com:EpicGames/UnrealEngine.git'
+                }
             }
         }
         stage('Build Docker Image') {
